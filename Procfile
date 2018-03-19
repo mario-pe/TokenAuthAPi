@@ -1,1 +1,1 @@
-web: gunicorn UserToken:app
+web: gunicorn UserToken.wsgi --log-file
