@@ -12,8 +12,7 @@ from rest_framework.views import APIView
 from users.serializers import UserSerializer
 
 """
-curl -X GET http://127.0.0.1:8000/users/users/ -H 'Authorization: Token 5e433456c19d1b6ed1640b37260747a500080e62'
-
+Example of requests, make sure you use correct token
 
 curl -X GET http://127.0.0.1:8000/users/users/ -H 'Authorization: Token 944d95490a351ee5aaa7de8b967c50454047c161'
 
@@ -22,11 +21,18 @@ curl -X GET http://127.0.0.1:8000/users/user/me/ -H 'Authorization: Token 57cac3
 
 
 class AllUsers(ListAPIView):
+    """
+        Send list of all user registered in app after authorization by token
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserLogin(APIView):
+    """
+        Make token available for user if his credentials (email, password) are correct
+    """
+
     permission_classes = [AllowAny]
 
     def post(self, request, format=None):
@@ -45,6 +51,9 @@ class UserLogin(APIView):
 
 
 class CreateUser(APIView):
+    """
+        Register new user, required: username, email, password
+    """
     permission_classes = [AllowAny]
 
     def put(self, request,format=None):
@@ -58,7 +67,9 @@ class CreateUser(APIView):
 
 
 class UserDetail(APIView):
-    # permission_classes = [AllowAny]
+    """
+        Endpoint authorization by token, response contain user details
+    """
 
     def get(self, request, format=None):
         serializer = UserSerializer(request.user)

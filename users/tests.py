@@ -1,14 +1,11 @@
 import json
 
-from django.test import TestCase, Client
-from django.utils.http import urlencode
-from rest_framework import status
-from rest_framework.authtoken.models import Token
-from rest_framework.reverse import reverse
-from rest_framework.test import APITestCase, RequestsClient, APIRequestFactory, force_authenticate
 from django.contrib.auth.models import User
+from django.test import TestCase, Client
+from rest_framework import status
+from rest_framework.test import APIRequestFactory, force_authenticate
 
-from users.api_views import CreateUser, AllUsers, UserDetail
+from users.api_views import AllUsers, UserDetail
 from users.serializers import UserSerializer
 
 client = Client()
@@ -16,6 +13,10 @@ factory = APIRequestFactory()
 
 
 class AllUsersEndpointTests(TestCase):
+    """
+        Test module for GET all users API
+    """
+
     def setUp(self):
         User.objects.create(username='testUser', email='email@wp.pl', password='123456Mp')
         User.objects.create(username='testUser1', email='email1@wp.pl', password='123456Mp')
@@ -41,6 +42,10 @@ class AllUsersEndpointTests(TestCase):
 
 
 class RegisterUserEndpointTests(TestCase):
+    """
+        Test module for inserting a new user
+    """
+
     def setUp(self):
         self.valid_paylod = {
             'username': 'test_user',
@@ -71,6 +76,10 @@ class RegisterUserEndpointTests(TestCase):
 
 
 class LoginUserEndpointTests(TestCase):
+    """
+        Test module for log in user API
+    """
+
     def setUp(self):
         self.user = {
             'username': 'test_user',
@@ -125,6 +134,10 @@ class LoginUserEndpointTests(TestCase):
 
 
 class UserDetailEndpointTests(TestCase):
+    """
+        Test module for GET single user details API
+    """
+
     def setUp(self):
         self.user_1 = {
             'username': 'test_user_1',

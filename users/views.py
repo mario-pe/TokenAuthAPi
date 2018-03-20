@@ -6,16 +6,24 @@ from rest_framework.authtoken.models import Token
 
 
 def index(request):
+
     return render(request, 'users/index.html')
 
 
 @login_required
 def home(request):
+    """
+        Greeting view for log in user
+    """
+
     return render(request, 'users/home.html')
 
 
 @login_required
 def all_users(request):
+    """
+        Function prepare list of all users registered in application
+    """
     users = User.objects.all()
     context = {'users': users}
     return render(request, 'users/all_users.html', context)
@@ -23,6 +31,9 @@ def all_users(request):
 
 @login_required
 def user_details(request):
+    """
+        Function display detail of current user
+    """
 
     user = User.objects.get(username=request.user.username)
     token = Token.objects.get_or_create(user=user)
