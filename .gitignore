@@ -1,6 +1,7 @@
 *.pyc
 *.db
 *.pid
+*.swo
 __ pycache __
 .idea
 .vEnv
