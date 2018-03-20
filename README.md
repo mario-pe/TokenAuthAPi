@@ -10,8 +10,8 @@ nastepnie postepuj zgodnie z punktami
 	2. git init
 	3. git clone https://github.com/mario-pe/TokenAuthAPi.git
 	4. cd user_token 
-	5. python manage.py test - polecenie to uruchamia testy jednostkowe
-	6. python manage.py runserver - polecenie to uruchamia server localny
+	5. python manage.py test - polecenie uruchamia testy jednostkowe
+	6. python manage.py runserver - polecenie uruchamia server localny
 
 Instrukcja do API 
 
